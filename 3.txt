@@ -1,0 +1,50 @@
+"
+lng lng -99.127663
+,
+good
+"
+geonameId geonameId 3530597
+,
+good
+"
+countrycode countrycode
+,
+good
+"
+name name
+,
+good
+"
+fclName fclName
+,
+good
+"
+toponymName toponymname
+,
+good
+"
+fcodeName fcodename
+,
+good
+"
+wikipedia wikipedia
+,
+good
+"
+lat lat
+,
+good
+"
+fcl fcl
+,
+good
+"
+population population
+,
+good
+"
+fcode 
+"
+"
+Not predicted value: PPLC
+}
