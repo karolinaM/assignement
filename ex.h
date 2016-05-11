@@ -2,8 +2,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define GEO_INTERNAL_BUFFER_SIZE (int)5
+#define GEO_INTERNAL_BUFFER_SIZE (int)664
 
+#define GEO_STRUCT_NOT_FULL  0
 #define GEO_EMPTY_LNG          0
 #define GEO_EMPTY_LAT 		   0
 #define GEO_EMPTY_POPULATION  -1
@@ -18,6 +19,11 @@
 #define GEO_EMPTY_POPULATION  -1
 #define GEO_EMPTY_FCODE       '\0'   
 
+/*
+ * JSON file with only one object filled with max values has: identifiers 151 bytes + sizeof(geobuffertype_t) = 151+664 = 815 bytes
+ * 151 char: {geonames: [{lng: ,geonameId: ,countrycode: "",name: "",fclName: "",toponymName: "",fcodeName: "",wikipedia: "",lat: ,fcl: "",population: ,fcode: ""}]}
+ */
+
 typedef struct {
 	float lng;
 	float lat;
@@ -30,6 +36,7 @@ typedef struct {
 	char fcl[4];
 	unsigned int population;
 	char fcode[4];
+	char finished; // tells if struct is filled with parsed data
 } geotype_t;
 
 /*
@@ -39,6 +46,9 @@ typedef struct {
 typedef struct{
 	char buffer[GEO_INTERNAL_BUFFER_SIZE];
 	unsigned int index; // empty element index, not processed element
-}geobuffertype_t;
+}geointernalbuffertype_t;
 
+void geoInit(geotype_t *geo);
+void geoInternalBufferInit(geointernalbuffertype_t *buf);
+void geoPutInInternalBuffer(const char *stream, geointernalbuffertype_t *buf, unsigned int stream_start_index);
 
